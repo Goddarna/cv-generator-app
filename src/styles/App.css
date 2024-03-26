@@ -1,0 +1,76 @@
+.btn {
+  @apply bg-gray-800 font-bold py-2 px-4 rounded text-white;
+  display: block;
+
+  margin: auto;
+}
+
+.btn.close {
+  background-color: transparent;
+
+  @apply absolute top-0 right-0 text-red-500;
+}
+
+.btn.remove {
+  @apply border-gray-800 border-2 text-gray-800;
+  font-size: x-small;
+  background-color: transparent;
+
+  margin-top: 20px;
+}
+
+.input {
+  @apply appearance-none shadow border rounded;
+}
+
+.edit-box {
+  @apply border rounded border-gray-400 border-2 relative;
+
+  padding: 20px;
+}
+
+.edit-box h2 {
+  font-size: larger;
+  font-weight: 700;
+}
+
+.edit-box .inputs {
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  flex-direction: column;
+}
+
+.cv-container {
+  @apply bg-white shadow-md;
+
+  min-width: calc(100% - 15rem);
+
+  margin: 0px 20px;
+  padding: 40px;
+}
+
+.cv-section {
+  padding: 40px 80px;
+}
+
+/* .edit-box .btn,
+.cv-section .btn {
+  margin: 0 auto;
+} */
+
+.experience-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-group .btn {
+  margin: 0 10px;
+}
