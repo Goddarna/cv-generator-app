@@ -54,6 +54,11 @@
   padding: 40px 80px;
 }
 
+.cv-section-heading {
+  font-size: larger;
+  border-bottom: solid 1px;
+  margin-bottom: 20px;
+}
 /* .edit-box .btn,
 .cv-section .btn {
   margin: 0 auto;

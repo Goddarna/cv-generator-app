@@ -1,13 +1,31 @@
 import { useState } from "react";
 import "./styles/App.css";
 
-// import Input from './components/Input';
-// import Cv from './components/CV';
-import PersonalDetailsInput from "./components/PersonalDetailsInput";
-import ExperienceInputList from "./components/ExperienceInputList";
-import PersonalDetailsView from "./components/PersonalDetailsView";
-import ExperienceView from "./components/ExperienceView";
-// import EducationInputList from "./components/EducationInputList";
+import MultiSectionInput from "./components/MultiSectionInput";
+import SectionView from "./components/SectionView";
+import SingleSectionInput from "./components/SingleSectionInput";
+
+// default data
+const detailsDefault = {
+  id: 1,
+  name: "Bob Smith",
+  email: "bobsmith@email.com",
+  phone: "+7934543534",
+};
+const experienceDefault = {
+  id: 1,
+  position: "Web Developer",
+  company: "Make Co",
+  dates: "2016-2017",
+  info: "I worked here, i liked it.",
+};
+const educationDefault = {
+  id: 1,
+  school: "University",
+  qualification: "BSc Web Development",
+  dates: "2013-2017",
+  info: "I learned here, i liked it.",
+};
 
 function App() {
   // Set CV data
@@ -19,17 +37,19 @@ function App() {
   const [toggleExperience, setToggleExperience] = useState(true);
   const [toggleEducation, setToggleEducation] = useState(true);
 
-  function handlePersonalSubmit(name, email, phone) {
-    let details = { name, email, phone };
-    setPersonalDetails(details);
+  function handlePersonalSubmit(personalDetails) {
+    setPersonalDetails(personalDetails);
+    setTogglePersonalDetails(false);
   }
 
   function handleExperienceSubmit(experience) {
     setExperience(experience);
+    setToggleExperience(false);
   }
 
   function handleEducationSubmit(education) {
     setEducation(education);
+    setToggleEducation(false);
   }
 
   return (
@@ -37,39 +57,47 @@ function App() {
       <h1 className="text-3xl font-bold underline text-white">CV Generator</h1>
       <div className="cv-container">
         {/* Add personal input section */}
-        {/* <SingleSectionInput
+        <SingleSectionInput
+          title="Personal Details"
+          defaultData={detailsDefault}
+          onSubmit={handlePersonalSubmit}
           toggle={togglePersonalDetails}
-          onPersonalSubmit={handlePersonalSubmit}
-          onTogglePersonalDetails={() => setTogglePersonalDetails(false)}
-        /> */}
-
-        <PersonalDetailsInput
+          onToggle={() => setTogglePersonalDetails(false)}
+        />
+        <SectionView
+          type="Personal Details"
+          data={personalDetails}
           toggle={togglePersonalDetails}
-          onPersonalSubmit={handlePersonalSubmit}
-          onTogglePersonalDetails={() => setTogglePersonalDetails(false)}
+          onToggle={() => setTogglePersonalDetails(true)}
         />
-        <PersonalDetailsView
-          name={personalDetails.name}
-          email={personalDetails.email}
-          phone={personalDetails.phone}
-          togglePersonalDetails={togglePersonalDetails}
-          onTogglePersonalDetails={() => setTogglePersonalDetails(true)}
-        />
-        <ExperienceInputList
+        <MultiSectionInput
+          title="experience"
+          defaultData={experienceDefault}
+          dataProperties={["position", "company", "dates", "info"]}
           toggle={toggleExperience}
-          onExperienceSubmit={handleExperienceSubmit}
-          onToggleExperience={() => setToggleExperience(false)}
+          onSubmit={handleExperienceSubmit}
+          onToggle={() => setToggleExperience(false)}
         />
-        <ExperienceView
-          experience={experience}
-          toggleExperience={toggleExperience}
-          onToggleExperience={() => setToggleExperience(true)}
+        <SectionView
+          type="Experience"
+          data={experience}
+          toggle={toggleExperience}
+          onToggle={() => setToggleExperience(true)}
         />
-        {/* <EducationInputList
+        <MultiSectionInput
+          title="Education"
+          defaultData={educationDefault}
+          dataProperties={["school", "qualification", "dates", "info"]}
           toggle={toggleEducation}
-          onEducationSubmit={handleEducationSubmit}
-          onToggleEducation={() => setToggleEducation(false)}
-        /> */}
+          onSubmit={handleEducationSubmit}
+          onToggle={() => setToggleEducation(false)}
+        />
+        <SectionView
+          type="Education"
+          data={education}
+          toggle={toggleEducation}
+          onToggle={() => setToggleEducation(true)}
+        />
       </div>
     </>
   );

@@ -1,9 +1,9 @@
 export default function Input({ label, value, handleChange }) {
   return (
     <div>
-      <label className="block">{label}</label>
+      <label className="block capitalize">{label}</label>
       <input
-        className="input"
+        className="input px-2"
         type="text"
         value={value}
         onChange={handleChange}
