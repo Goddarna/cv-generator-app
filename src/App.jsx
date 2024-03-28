@@ -56,7 +56,6 @@ function App() {
     <>
       <h1 className="text-3xl font-bold underline text-white">CV Generator</h1>
       <div className="cv-container">
-        {/* Add personal input section */}
         <SingleSectionInput
           title="Personal Details"
           defaultData={detailsDefault}
